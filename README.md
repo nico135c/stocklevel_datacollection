@@ -24,11 +24,12 @@ pip install openpyxl
 
 1. Connect your Arduino and ensure it prints numeric values over serial.
 2. Update the serial port in `main.py` if needed (e.g., `/dev/ttyACM0`).
-3. Run:
+3. Update the excel filename in `main.py` if needed.
+5. Run:
 ```
 python3 main.py
 ```
-4. Follow the prompts to collect data for each part.
+6. Follow the prompts to collect data for each part.
 
 ## File Structure
 
