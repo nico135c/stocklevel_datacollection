@@ -6,21 +6,41 @@ a new column in an Excel file (`.xlsx`). The first column contains the reading i
 and each subsequent column represents a new part.
 
 ## Features
+### Data Collection
 - Automatically connects to an Arduino over serial
 - Reads 200 fresh samples per part
 - Saves the data into an Excel file (one column per part)
-- Automatically creates the Excel file if it does not exist
-- Simple, blocking serial reader (no threads, no queues)
+
+### Data Visualization
+'visualizer.py' processes a selected '.xlsx' data file and generates several useful plots:
+- Mean sensor reading vs. stock level
+- Boxplots for all stock levels
+- Scatter plot of all samples
+- Linear regression calibration curve with confidence interval
+- Correlation heatmap
+- Saves all generated plots into a structured folder
 
 ## Requirements
-
+### Data Collection
 Install dependencies:
 ```
 pip install pyserial
 pip install openpyxl
 ```
 
+### Data Visualization
+Install dependencies:
+```
+pip install pandas
+pip install numpy
+pip install matplotlib
+pip install seaborn
+pip install scikit-learn
+```
+
 ## Usage
+
+### Data Collection
 
 1. Connect your Arduino and ensure it prints numeric values over serial.
 2. Update the serial port in `main.py` if needed (e.g., `/dev/ttyACM0`).
@@ -31,6 +51,15 @@ python3 main.py
 ```
 6. Follow the prompts to collect data for each part.
 
+### Data Visualization
+
+1. Run the Data Collection script first, or ensure you have some data in the 'data/' folder.
+2. Run:
+```
+python3 visualizer.py
+```
+3. Follow the prompts to visualize the data.
+
 ## File Structure
 
 - `main.py`  
@@ -39,7 +68,12 @@ python3 main.py
 - `arduinoreader.py`  
   Minimal serial reader that returns fresh samples only.
 
+- `visualizer.py`  
+  Script that takes collected data and saves various plots.
+
 ## Output Format
+
+### Data Collection
 
 The generated Excel file has the following structure:
 
@@ -51,5 +85,9 @@ The generated Excel file has the following structure:
 | 200       | value  | value  | ... |
 
 Each part is stored in its own column.
+
+### Data Visualization
+
+Generates images of various plots saved as '.png' files.
 
 ---
